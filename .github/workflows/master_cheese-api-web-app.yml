@@ -60,4 +60,5 @@ jobs:
           app-name: 'cheese-api-web-app'
           slot-name: 'Production'
           package: '*.jar'
-          
+
+
