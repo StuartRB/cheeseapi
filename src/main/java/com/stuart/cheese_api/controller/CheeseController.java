@@ -10,6 +10,6 @@ public class CheeseController {
 
     @GetMapping("api/cheese")
     public Object getCheeses(){
-        return List.of("Cheddar", "Wendleydale");
+        return List.of("Cheddar", "Wendleydale", "brie");
     }
 }
