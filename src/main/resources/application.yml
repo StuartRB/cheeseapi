@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    azure:
+      cosmos:
+        endpoint: https://testfnol.documents.azure.com:443/
+        key:
+        database: my-database
+  application:
+    name: cheese-api
