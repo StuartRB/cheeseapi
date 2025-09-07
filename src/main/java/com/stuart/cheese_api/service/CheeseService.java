@@ -5,6 +5,7 @@ import com.stuart.cheese_api.entity.UserEntity;
 import com.stuart.cheese_api.entity.UserRepository;
 import com.stuart.cheese_api.model.Person;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -13,6 +14,7 @@ import java.util.UUID;
 import java.util.stream.StreamSupport;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class CheeseService {
 
@@ -28,6 +30,7 @@ public class CheeseService {
                 .pets(mapPets(person.getPets()))
                 .build();
         userRepository.save(user);
+        log.info("Added new user with id {}", user.getId());
         return user;
     }
 
