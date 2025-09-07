@@ -24,21 +24,8 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      - name: Fetch Key Vault secrets
-        id: kv
-        uses: azure/get-keyvault-secrets@v1
-        with:
-          keyvault: devvaultcheeseapi
-          secrets: COSMOS-KEY
-
-      - name: Set Cosmos Key env var
-        run: echo "SPRING_CLOUD_AZURE_COSMOS_KEY=${{ steps.kv.outputs.COSMOS-KEY }}" >> $GITHUB_ENV
-
       - name: Build with Gradle
         run: gradle clean build
-        env:
-          SPRING_CLOUD_AZURE_COSMOS_KEY: ${SPRING_CLOUD_AZURE_COSMOS_KEY}
-          TEST_KEY: ${SPRING_CLOUD_AZURE_COSMOS_KEY}
 
       - name: Show Gradle build output
         run: ls -R build/libs
@@ -69,8 +56,15 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_62F3697427D7451D8624D8B4CA3482C6 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FCA50894012642E7AE92193497D668FF }}
 
+      - name: Fetch Key Vault secrets
+        id: kv
+        uses: azure/get-keyvault-secrets@v1
+        with:
+          keyvault: devvaultcheeseapi
+          secrets: COSMOS-KEY
 
-
+      - name: Set Cosmos Key env var
+        run: echo "SPRING_CLOUD_AZURE_COSMOS_KEY=${{ steps.kv.outputs.COSMOS-KEY }}" >> $GITHUB_ENV
 
       - name: Deploy to Azure Web App // this didn't work
         id: deploy-to-webapp
