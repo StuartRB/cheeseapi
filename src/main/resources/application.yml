@@ -3,7 +3,7 @@ spring:
     azure:
       cosmos:
         endpoint: https://testfnol.documents.azure.com:443/
-        key:
+        key: ${SPRING_CLOUD_AZURE_COSMOS_KEY}
         database: my-database
   application:
     name: cheese-api
