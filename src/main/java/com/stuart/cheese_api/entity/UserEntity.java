@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
+
 @Container(containerName = "users")
 @Data
 @Builder
@@ -19,8 +22,8 @@ public class UserEntity {
 
     private String name;
     private int age;
-
-    // getters and setters
+    private String createdDate;
+    List<Pet> pets;
 }
 
 
