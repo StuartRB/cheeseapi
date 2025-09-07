@@ -74,5 +74,5 @@ jobs:
           slot-name: 'Production'
           package: 'cheese-api-0.0.1-SNAPSHOT.jar'
         env:
-          SPRING_CLOUD_AZURE_COSMOS_KEY=${SPRING_CLOUD_AZURE_COSMOS_KEY}
+          SPRING_CLOUD_AZURE_COSMOS_KEY: ${SPRING_CLOUD_AZURE_COSMOS_KEY}
 
