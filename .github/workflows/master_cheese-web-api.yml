@@ -25,7 +25,7 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Gradle
-        run: gradle clean build
+        run: ./gradlew clean build
 
       - name: Show Gradle build output
         run: ls -R build/libs
@@ -33,7 +33,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: java-app
+          name: cheeseapi-app
           path: '${{ github.workspace }}/build/libs/*.jar'
 
   deploy:
@@ -47,7 +47,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: java-app
+          name: cheeseapi-app
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -66,7 +66,7 @@ jobs:
       - name: Set Cosmos Key env var
         run: echo "SPRING_CLOUD_AZURE_COSMOS_KEY=${{ steps.kv.outputs.COSMOS-KEY }}" >> $GITHUB_ENV
 
-      - name: Deploy to Azure Web App // this didn't work
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
