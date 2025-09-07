@@ -56,15 +56,6 @@ jobs:
 #          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_62F3697427D7451D8624D8B4CA3482C6 }}
 #          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FCA50894012642E7AE92193497D668FF }}
 
-      - name: Set Azure Web App settings
-        uses: azure/cli@v1
-        with:
-          inlineScript: |
-            az webapp config appsettings set \
-              --name cheese-web-api \
-              --resource-group my-resource-group \
-              --settings SPRING_CLOUD_AZURE_COSMOS_KEY=${{ secrets.margaret }} \
-                         MARGARET_KEY=${{ secrets.margaret }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -73,6 +64,3 @@ jobs:
           app-name: 'cheese-web-api'
           slot-name: 'Production'
           package: 'cheese-api-0.0.1-SNAPSHOT.jar'
-#        env:
-#          SPRING_CLOUD_AZURE_COSMOS_KEY: ${{ secrets.margaret }}
-#          MARGARGET_KEY: ${{ secrets.margaret }}
