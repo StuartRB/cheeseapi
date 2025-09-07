@@ -66,17 +66,12 @@ jobs:
       - name: Set Cosmos Key env var
         run: echo "SPRING_CLOUD_AZURE_COSMOS_KEY=${{ steps.kv.outputs.COSMOS-KEY }}" >> $GITHUB_ENV
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Web App // this didn't work
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'cheese-web-api'
           slot-name: 'Production'
           package: 'cheese-api-0.0.1-SNAPSHOT.jar'
-          inlineScript: |
-            az webapp config appsettings set \
-              --name cheese-web-api \
-              --resource-group my-resource-group \
-              --settings SPRING_CLOUD_AZURE_COSMOS_KEY=${SPRING_CLOUD_AZURE_COSMOS_KEY}
-
+        env: SPRING_CLOUD_AZURE_COSMOS_KEY=${SPRING_CLOUD_AZURE_COSMOS_KEY}
 
