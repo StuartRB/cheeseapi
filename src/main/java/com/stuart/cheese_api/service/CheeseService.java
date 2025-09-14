@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
+import java.util.random.RandomGenerator;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -57,6 +59,8 @@ public class CheeseService {
     }
 
     public void addPlayer() {
-        playerRepository.save(new Player("1234", "John Barnes", 20, "AM"));
+        Random rand = new Random();
+        int randomInt = rand.nextInt(10000);
+        playerRepository.save(new Player(String.valueOf(randomInt+1), "John Barnes", 20, "AM"));
     }
 }
