@@ -1,8 +1,6 @@
 package com.stuart.cheese_api.service;
 
-import com.stuart.cheese_api.entity.Pet;
-import com.stuart.cheese_api.entity.UserEntity;
-import com.stuart.cheese_api.entity.UserRepository;
+import com.stuart.cheese_api.entity.*;
 import com.stuart.cheese_api.model.Person;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +17,7 @@ import java.util.stream.StreamSupport;
 public class CheeseService {
 
     private UserRepository userRepository;
+    private PlayerRepository playerRepository;
 
     public UserEntity createUser(Person person){
         var user = UserEntity.builder()
@@ -51,5 +50,13 @@ public class CheeseService {
                 .age(pet.getAge())
                 .type(pet.getType())
                 .build()).toList();
+    }
+
+    public List<Player> getAllPlayers() {
+        return playerRepository.findAll();
+    }
+
+    public void addPlayer() {
+        playerRepository.save(new Player("1234", "John Barnes", 20, "AM"));
     }
 }

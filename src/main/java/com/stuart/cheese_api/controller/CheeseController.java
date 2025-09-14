@@ -1,5 +1,6 @@
 package com.stuart.cheese_api.controller;
 
+import com.stuart.cheese_api.entity.Player;
 import com.stuart.cheese_api.entity.UserEntity;
 import com.stuart.cheese_api.model.Person;
 import com.stuart.cheese_api.service.CheeseService;
@@ -27,5 +28,15 @@ public class CheeseController {
     @GetMapping("api/users/{email}")
     public List<UserEntity> getUserByEmail(@PathVariable String email) {
         return service.findByEmail(email);
+    }
+
+    @GetMapping("api/players")
+    public List<Player> getPlayers(){
+        return service.getAllPlayers();
+    }
+
+    @PostMapping("api/players")
+    public void addPlayer(){
+        service.addPlayer();
     }
 }
