@@ -36,7 +36,7 @@ public class CheeseController {
     }
 
     @PostMapping("api/players")
-    public void addPlayer(){
-        service.addPlayer();
+    public String addPlayer(){
+       return service.addPlayer();
     }
 }

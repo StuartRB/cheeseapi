@@ -58,9 +58,12 @@ public class CheeseService {
         return playerRepository.findAll();
     }
 
-    public void addPlayer() {
+    public String addPlayer() {
         Random rand = new Random();
         int randomInt = rand.nextInt(10000);
-        playerRepository.save(new Player(String.valueOf(randomInt+1), "John Barnes", 20, "AM"));
+        var id = String.valueOf(randomInt+1);
+        System.out.println("adding new player with id: " + id );
+        playerRepository.save(new Player(id, "John Barnes", 20, "AM"));
+        return id;
     }
 }
